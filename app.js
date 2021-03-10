@@ -7,12 +7,21 @@ const searchBtn = document.querySelector('#search-btn');
 const searchUserInput = document.querySelector('#searchUser');
 
 searchBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+    ui.clearProfile();
     if(searchUserInput.value !== '') {
         // make http call
         github.getUser(searchUserInput.value)
                 .then(data => {
-                    ui.showProfile(data.profile);
+                    if(data.profile.message === "Not Found") {
+                        // Show Alert
+                        ui.showAlert('User not found', 'alert alert-danger')
+                    } else {
+                        console.log(data.profile);
+                        ui.showProfile(data.profile);
+                    }
                 })
     }
+    // Empty search input
+    searchUserInput.value = '';
+    e.preventDefault();
 })

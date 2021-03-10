@@ -5,29 +5,62 @@ class UI {
     // display profile and ui
     showProfile(user) {
         this.profile.innerHTML = `
-                                    <div class="card card-body mb-5>
+                                    <div class="card card-body mb-5">
                                         <div class ="row">
-                                            <div class="col-md-3">
-                                                <img class="img-fluid mb-2" src="${user.avatar_url}">
-                                                <a href="${user.html_url}" target="_blank" class="btn btn-primary btn-block mb-3">View in Github</a>
+                                            <div class="col-md-3 mb-3">
+                                                <img class="img-fluid rounded-circle mb-3" src="${user.avatar_url}">
+                                                <a href="${user.html_url}" target="_blank" class="btn btn-primary btn-block mt-3">View in Github</a>
                                             </div>
                                             <div class="col-md-9">
-                                                <span class="badge badge-primary">Public Repos: ${user.public_repos}</span>
-                                                <span class="badge badge-secondary">Followers: ${user.followers}</span>
-                                                <span class="badge badge-success">Following: ${user.following}</span>
+                                                <span class="badge badge-primary mr-2">Public Repos: ${user.public_repos}</span>
+                                                <span class="badge badge-secondary mr-2">Followers: ${user.followers}</span>
+                                                <span class="badge badge-success mr-2">Following: ${user.following}</span>
                                                 <br><br>
                                                 <ul class="list-group">
+                                                    <li class="list-group-item">User name: ${user.name}</li>
                                                     <li class="list-group-item">Website: ${user.blog}</li>
                                                     <li class="list-group-item">Location: ${user.location}</li>
                                                     <li class="list-group-item">Member Since: ${user.created_at}</li>
+                                                    <li class="list-group-item">Last Update: ${user.updated_at}</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                     `
     }
+
     // clear profile
     clearProfile() {
         this.profile.innerHTML = '';
+    }
+
+    // Show alert message
+    showAlert(message, className) {
+        // clear all the remaining alert first
+        this.clearAlert();
+        // create div
+        const div = document.createElement('div');
+        div.className = className;
+        // add text
+        div.appendChild(document.createTextNode(message));
+        // get the parent
+        const container = document.querySelector('.searchContainer');
+        // Get search box
+        const searchBox = document.querySelector('.search');
+        // Insert alert message
+        container.insertBefore(div, searchBox);
+        
+        // Time out after 3 seconds
+        setTimeout(() => {
+            this.clearAlert()
+        }, 3000);
+    }
+
+    // clear alert message
+    clearAlert() {
+        const currentAlert = document.querySelector('.alert');
+        if(currentAlert) {
+            currentAlert.remove();
+        }
     }
 }
