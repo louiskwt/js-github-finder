@@ -8,7 +8,9 @@ const searchUserInput = document.querySelector('#searchUser');
 
 searchUserInput.addEventListener('keyup', (e) => {
     if(e.keyCode === 13) {
+        // Always clear the profile and repos first to start afresh 
         ui.clearProfile();
+        ui.clearRepos();
         if(searchUserInput.value !== '') {
             // make http call
             github.getUser(searchUserInput.value)
@@ -19,6 +21,7 @@ searchUserInput.addEventListener('keyup', (e) => {
                         } else {
                             console.log(data.profile);
                             ui.showProfile(data.profile);
+                            ui.showRepo(data.repos);
                         }
                     })
         }
@@ -30,17 +33,20 @@ searchUserInput.addEventListener('keyup', (e) => {
 })
 
 searchBtn.addEventListener('click', (e) => {
+    // Always clear the profile and repos first to start afresh
     ui.clearProfile();
+    ui.clearRepos();
     if(searchUserInput.value !== '') {
         // make http call
         github.getUser(searchUserInput.value)
                 .then(data => {
                     if(data.profile.message === "Not Found") {
                         // Show Alert
-                        ui.showAlert('User not found', 'alert alert-danger')
+                        ui.showAlert('User not found', 'alert alert-danger');
                     } else {
                         console.log(data.profile);
                         ui.showProfile(data.profile);
+                        ui.showRepo(data.repos);
                     }
                 })
     }

@@ -1,6 +1,7 @@
 class UI {
     constructor() {
         this.profile = document.querySelector('#profile');
+        this.repos = document.querySelector('#repos');
     }
     // display profile and ui
     showProfile(user) {
@@ -83,5 +84,31 @@ class UI {
         if(currentAlert) {
             currentAlert.remove();
         }
+    }
+    // Show repo
+    showRepo(repos) {
+        let output = '';
+        repos.forEach((repo) => {
+            output += `
+                         <div class="card card-body mb-2">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="${repo.html_url}" target_blank>${repo.name}</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="badge badge-primary mr-2">Language: ${repo.language}</span>
+                                    <span class="badge badge-secondary mr-2">Forks: ${repo.forks_count}</span>
+                                    <span class="badge badge-success mr-2">Watchers: ${repo.watchers_count}</span>
+                                </div>
+                            </div>
+                         </div>  
+                        `
+        });
+        // Output repo
+        this.repos.innerHTML += output;
+    }
+    // clear repos
+    clearRepos() {
+        this.repos.innerHTML = '';
     }
 }
