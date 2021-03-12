@@ -38,11 +38,11 @@ class UI {
                                                 <span class="badge badge-success mr-2">Following: ${user.following}</span>
                                                 <br><br>
                                                 <ul class="list-group">
-                                                    <li class="list-group-item">User name: ${user.name}</li>
-                                                    <li class="list-group-item">Website: ${user.blog}</li>
-                                                    <li class="list-group-item">Location: ${user.location}</li>
-                                                    <li class="list-group-item">Member Since: ${joinDate}</li>
-                                                    <li class="list-group-item">Last Update: ${updateDate}</li>
+                                                    <li class="list-group-item"><span class="mr-1 font-weight-bold">User name:</span> ${user.name}</li>
+                                                    <li class="list-group-item"><span class="mr-1 font-weight-bold">Website:</span> ${user.blog}</li>
+                                                    <li class="list-group-item"><span class="mr-1 font-weight-bold">Location:</span> ${user.location}</li>
+                                                    <li class="list-group-item"><span class="mr-1 font-weight-bold">Member Since:</span> ${joinDate}</li>
+                                                    <li class="list-group-item"><span class="mr-1 font-weight-bold">Last Update:</span> ${updateDate}</li>
                                                 </ul>
                                             </div>
                                         </div>

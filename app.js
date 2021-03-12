@@ -24,6 +24,8 @@ searchUserInput.addEventListener('keyup', (e) => {
         }
         // Empty search input
         searchUserInput.value = '';
+        // remove focus from the input field
+        searchUserInput.blur();
     }
 })
 
@@ -44,5 +46,7 @@ searchBtn.addEventListener('click', (e) => {
     }
     // Empty search input
     searchUserInput.value = '';
+    // remove focus from the button
+    searchBtn.blur();
     e.preventDefault();
 })
