@@ -4,6 +4,27 @@ class UI {
     }
     // display profile and ui
     showProfile(user) {
+        // handling location info
+        if(user.location === null) {
+            user.location = 'Location Unknown';
+        }
+        // handling name info
+        if(user.name === null) {
+            user.name = 'No user name';
+        }
+        // handling website/blog info
+        if(user.blog === '') {
+            user.blog = "User has no website/blog";
+        }
+        // Date string
+        let regex = /T/; // the place I want to cut
+        // reformat joining date
+        let joinDate = user.created_at;
+        joinDate = joinDate.slice(0, joinDate.match(regex).index);
+        // reformat update date
+        let updateDate = user.updated_at;
+        updateDate = updateDate.slice(0, updateDate.match(regex).index);
+        // HTML template
         this.profile.innerHTML = `
                                     <div class="card card-body mb-5">
                                         <div class ="row">
@@ -20,8 +41,8 @@ class UI {
                                                     <li class="list-group-item">User name: ${user.name}</li>
                                                     <li class="list-group-item">Website: ${user.blog}</li>
                                                     <li class="list-group-item">Location: ${user.location}</li>
-                                                    <li class="list-group-item">Member Since: ${user.created_at}</li>
-                                                    <li class="list-group-item">Last Update: ${user.updated_at}</li>
+                                                    <li class="list-group-item">Member Since: ${joinDate}</li>
+                                                    <li class="list-group-item">Last Update: ${updateDate}</li>
                                                 </ul>
                                             </div>
                                         </div>
